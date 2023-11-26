@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 import requests
+from decouple import config
 
 app = Flask(__name__)
 
-# Your GitHub personal access token
-github_token = "YOUR_GITHUB_TOKEN"
+# Access the GitHub token securely from environment variables
+github_token = config('GITHUB_TOKEN')
 
 @app.route('/')
 def index():
@@ -28,8 +29,10 @@ def get_user_info():
     if response.status_code == 200:
         user_info = response.json()
         return jsonify(user_info)  # Return user information as JSON
+        
     else:
         return jsonify({"error": f"Failed to fetch user information. Status code: {response.status_code}"})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
