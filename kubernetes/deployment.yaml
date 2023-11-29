@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: githubai-app-deployment  # Update the name to match your app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: githubai-app  # Update the app label to match your app
+  template:
+    metadata:
+      labels:
+        app: githubai-app  # Update the app label to match your app
+    spec:
+      containers:
+        - name: githubai-app-container 
+          image: githubai:0.2 
+          imagePullPolicy: Never
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "512Mi"
