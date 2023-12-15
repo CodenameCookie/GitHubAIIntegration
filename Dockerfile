@@ -21,7 +21,7 @@ EXPOSE 5000
 ENV FLASK_APP=main.py
 
 # Label the image with the desired tag
-LABEL version="0.2"
+LABEL version="0.4"
 
 # Define the command to run your Flask app
 #CMD ["python", "main.py"]

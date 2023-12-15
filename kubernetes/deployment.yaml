@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: githubai-app-container 
-          image: githubai:0.2 
+          image: githubai:0.4
           imagePullPolicy: Never
           resources:
             limits:

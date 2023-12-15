@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: My Project API
+  termsOfService: 'https://example.com/terms/'
+  contact:
+    email: contact@example.com
+    url: 'http://example.com/contact'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  x-logo:
+    url: 'https://redocly.github.io/openapi-template/logo.png'
+  description: |
+    This is an **example** API to demonstrate features of the OpenAPI
+    specification.
+  x-openai-verification-token: 703dcca4c2e24c5ea5e2c1235    
+externalDocs:
+  description: Find out how to create a GitHub repo for your OpenAPI definition.
+  url: 'https://github.com/Rebilly/generator-openapi-repo'
+tags:
+  - name: Echo
+    description: Example echo operations.
+  - name: User
+    description: Operations about users.
+  - name: default
+    description: This is a tag description.
+servers:
+  - url: 'http://localhost:31386'    
+
+components:
+  schemas:
+    RepositoryContent:
+      type: object
+      properties:
+        content:
+          type: string
+        name:
+          type: string
+        path:
+          type: string
+
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+    /:
+      get:
+        tags:
+        - default
+        summary: get_index
+        description: Welcome message for the API
+        operationId: get_index
+        parameters: []
+        responses:
+          '200':
+            description: Success
+            headers: {}
+            content: {}
+        deprecated: false
+    /list_repos:
+      get:
+        tags:
+        - default
+        summary: get_list_repos
+        description: List the repositories of the authenticated user
+        operationId: get_list_repos
+        parameters: []
+        responses:
+          '200':
+            description: Success
+            headers: {}
+            content: {}
+          '400':
+            description: Bad Request            
+        deprecated: false
+    /repo_full_contents:
+      get:
+        tags:
+        - default
+        summary: get_repo_full_contents
+        description: Get full contents of a specified repository
+        operationId: get_repo_full_contents
+        parameters: []
+        responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RepositoryContent'
+          '400':
+            description: Bad Request
+          '401':
+            description: Unauthorized                      
+        deprecated: false
+    /test:
+      get:
+        tags:
+        - default
+        summary: get_test_route
+        operationId: get_test_route
+        parameters: []
+        responses:
+          '200':
+            description: Success
+            headers: {}
+            content: {}
+          '400':
+            description: Bad Request
+          '401':
+            description: Unauthorized            
+        deprecated: false
+    /validate:
+      get:
+        tags:
+        - default
+        summary: get_validate
+        description: Validate the provided API key
+        operationId: get_validate
+        parameters: []
+        responses:
+          '200':
+            description: Success
+            headers: {}
+            content: {}
+          '401':
+            description: Invalid Key           
+        deprecated: false
+
+
+
+
+
